@@ -35,7 +35,7 @@ class Etmodal extends Module
     public function __construct()
     {
         $this->name = 'etmodal';
-        $this->tab = 'administration';
+        $this->tab = 'front_office_features';
         $this->version = '1.0.0';
         $this->author = 'eTechology';
         $this->need_instance = 0;
@@ -64,7 +64,8 @@ class Etmodal extends Module
         return parent::install() &&
             $this->registerHook('header') &&
             $this->registerHook('backOfficeHeader') &&
-            $this->registerHook('displayTop');
+            $this->registerHook('displayTop') &&
+            $this->registerHook('displayFooter');
     }
 
     public function uninstall()
@@ -219,6 +220,11 @@ class Etmodal extends Module
 
     public function hookDisplayTop()
     {
-        /* Place your code here. */
+        return $this->display(__FILE__, 'modaltop.tpl');
+    }
+
+     public function hookDisplayFooter()
+    {
+        return $this->display(__FILE__, 'modalfoot.tpl');
     }
 }
